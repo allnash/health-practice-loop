@@ -1,0 +1,8 @@
+{% load unfold %}
+{% if office_metric_chart %}
+    <div class="mb-6">
+        {% component "unfold/components/card.html" with title="Trend" description="The most recent periods, oldest first" %}
+            {% component "unfold/components/chart/line.html" with data=office_metric_chart height=200 %}{% endcomponent %}
+        {% endcomponent %}
+    </div>
+{% endif %}

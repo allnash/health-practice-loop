@@ -1,0 +1,654 @@
+{
+  "project_id": 2947,
+  "run_id": "2026-11-15T210553Z-brief",
+  "mode": "brief",
+  "trigger": "unattended run through bin/office-loop-run; whether launchd or a person started it is not visible from inside the run",
+  "generated_at": "2026-11-15T16:05:53-05:00",
+  "timezone": "America/New_York",
+  "period": {
+    "from": "2026-11-15T15:58:46-05:00",
+    "to": "2026-11-15T16:05:53-05:00"
+  },
+  "compared_with": "2026-11-15T205846Z-detailed",
+  "changes": [
+    {
+      "kind": "decisions_answered",
+      "detail": "Open decisions went from 3 to 0. The answers are recorded in egbe-docs/product/office-manager-loop.md under State: new-client flow is the first priority, the loop keeps running when Claude Code is closed, and Egbe session logging stays off.",
+      "material": true
+    },
+    {
+      "kind": "task_added",
+      "detail": "Task 7, 'Set targets for new-client flow: inquiries, intakes booked and days to first appointment', is new on Intake & referrals, due 2026-11-20. Open tasks went from 6 to 7.",
+      "material": false
+    },
+    {
+      "kind": "function_status",
+      "detail": "Compliance & privacy, Technology & vendors and Finance & reporting went from 'due' to 'ok' because their decisions closed.",
+      "material": false
+    }
+  ],
+  "sources": [
+    {
+      "id": "office-board",
+      "reference": "Local Django admin database, read with `./bin/office office_loop --json`",
+      "scope": "All active functions, routines, tasks, deadlines, metrics and decisions",
+      "checked_at": "2026-11-15T16:05:53-05:00",
+      "status": "ok",
+      "reason": "The board still holds starter content only. No real dates, numbers or owners have been entered yet."
+    },
+    {
+      "id": "egbe-limits",
+      "reference": "Egbe GET /me/limits",
+      "scope": "Project identity and allowances",
+      "checked_at": null,
+      "status": "not_checked",
+      "reason": "An unattended run may use only bin/office and date, so Egbe was not contacted."
+    },
+    {
+      "id": "practice-systems",
+      "reference": "EHR, billing, payroll, bank",
+      "scope": "Actual appointments, claims and money",
+      "checked_at": "2026-11-15T16:05:53-05:00",
+      "status": "not_applicable",
+      "reason": "Not connected, by design. People enter aggregate numbers on the board."
+    }
+  ],
+  "observations": [
+    {
+      "id": "functions_total",
+      "name": "Active office functions on the board",
+      "value": 10,
+      "unit": "count",
+      "as_of": "2026-11-15",
+      "source_ids": [
+        "office-board"
+      ]
+    },
+    {
+      "id": "functions_without_owner",
+      "name": "Functions with no owner assigned",
+      "value": 10,
+      "unit": "count",
+      "as_of": "2026-11-15",
+      "source_ids": [
+        "office-board"
+      ]
+    },
+    {
+      "id": "routines_due_today",
+      "name": "Routines due today",
+      "value": 1,
+      "unit": "count",
+      "as_of": "2026-11-15",
+      "source_ids": [
+        "office-board"
+      ]
+    },
+    {
+      "id": "routines_overdue",
+      "name": "Routines past their due date",
+      "value": 0,
+      "unit": "count",
+      "as_of": "2026-11-15",
+      "source_ids": [
+        "office-board"
+      ]
+    },
+    {
+      "id": "tasks_open",
+      "name": "Open tasks",
+      "value": 7,
+      "unit": "count",
+      "as_of": "2026-11-15",
+      "source_ids": [
+        "office-board"
+      ]
+    },
+    {
+      "id": "tasks_overdue",
+      "name": "Open tasks past their due date",
+      "value": 0,
+      "unit": "count",
+      "as_of": "2026-11-15",
+      "source_ids": [
+        "office-board"
+      ]
+    },
+    {
+      "id": "deadlines_entered",
+      "name": "Open deadlines entered on the board",
+      "value": 0,
+      "unit": "count",
+      "as_of": "2026-11-15",
+      "source_ids": [
+        "office-board"
+      ]
+    },
+    {
+      "id": "decisions_open",
+      "name": "Decisions waiting on the founder",
+      "value": 0,
+      "unit": "count",
+      "as_of": "2026-11-15",
+      "source_ids": [
+        "office-board"
+      ]
+    },
+    {
+      "id": "metrics_defined",
+      "name": "Metrics defined",
+      "value": 11,
+      "unit": "count",
+      "as_of": "2026-11-15",
+      "source_ids": [
+        "office-board"
+      ]
+    },
+    {
+      "id": "metrics_reported",
+      "name": "Metrics with at least one value entered",
+      "value": 0,
+      "unit": "count",
+      "as_of": "2026-11-15",
+      "source_ids": [
+        "office-board"
+      ]
+    },
+    {
+      "id": "metrics_with_target",
+      "name": "Metrics with a target set",
+      "value": 0,
+      "unit": "count",
+      "as_of": "2026-11-15",
+      "source_ids": [
+        "office-board"
+      ]
+    }
+  ],
+  "board": {
+    "as_of": "2026-11-15",
+    "totals": {
+      "routines_due_today": 1,
+      "routines_overdue": 0,
+      "tasks_open": 7,
+      "tasks_overdue": 0,
+      "deadlines_flagged": 0,
+      "deadlines_overdue": 0,
+      "decisions_open": 0,
+      "metrics_missing": 11,
+      "metrics_off_target": 0
+    },
+    "functions": [
+      {
+        "id": 1,
+        "name": "Front desk & scheduling",
+        "slug": "front-desk-scheduling",
+        "owner": null,
+        "routines_due": 0,
+        "routines_overdue": 0,
+        "tasks_open": 1,
+        "tasks_overdue": 0,
+        "deadlines_flagged": 0,
+        "deadlines_overdue": 0,
+        "decisions_open": 0,
+        "metrics_missing": 2,
+        "metrics_off_target": 0,
+        "status": "ok"
+      },
+      {
+        "id": 2,
+        "name": "Intake & referrals",
+        "slug": "intake-referrals",
+        "owner": null,
+        "routines_due": 0,
+        "routines_overdue": 0,
+        "tasks_open": 1,
+        "tasks_overdue": 0,
+        "deadlines_flagged": 0,
+        "deadlines_overdue": 0,
+        "decisions_open": 0,
+        "metrics_missing": 3,
+        "metrics_off_target": 0,
+        "status": "ok"
+      },
+      {
+        "id": 3,
+        "name": "Billing & insurance",
+        "slug": "billing-insurance",
+        "owner": null,
+        "routines_due": 0,
+        "routines_overdue": 0,
+        "tasks_open": 0,
+        "tasks_overdue": 0,
+        "deadlines_flagged": 0,
+        "deadlines_overdue": 0,
+        "decisions_open": 0,
+        "metrics_missing": 4,
+        "metrics_off_target": 0,
+        "status": "ok"
+      },
+      {
+        "id": 4,
+        "name": "Credentialing & licensing",
+        "slug": "credentialing-licensing",
+        "owner": null,
+        "routines_due": 0,
+        "routines_overdue": 0,
+        "tasks_open": 1,
+        "tasks_overdue": 0,
+        "deadlines_flagged": 0,
+        "deadlines_overdue": 0,
+        "decisions_open": 0,
+        "metrics_missing": 0,
+        "metrics_off_target": 0,
+        "status": "ok"
+      },
+      {
+        "id": 5,
+        "name": "Compliance & privacy",
+        "slug": "compliance-privacy",
+        "owner": null,
+        "routines_due": 0,
+        "routines_overdue": 0,
+        "tasks_open": 0,
+        "tasks_overdue": 0,
+        "deadlines_flagged": 0,
+        "deadlines_overdue": 0,
+        "decisions_open": 0,
+        "metrics_missing": 0,
+        "metrics_off_target": 0,
+        "status": "ok"
+      },
+      {
+        "id": 6,
+        "name": "People & payroll",
+        "slug": "people-payroll",
+        "owner": null,
+        "routines_due": 0,
+        "routines_overdue": 0,
+        "tasks_open": 1,
+        "tasks_overdue": 0,
+        "deadlines_flagged": 0,
+        "deadlines_overdue": 0,
+        "decisions_open": 0,
+        "metrics_missing": 1,
+        "metrics_off_target": 0,
+        "status": "ok"
+      },
+      {
+        "id": 7,
+        "name": "Facilities & supplies",
+        "slug": "facilities-supplies",
+        "owner": null,
+        "routines_due": 1,
+        "routines_overdue": 0,
+        "tasks_open": 0,
+        "tasks_overdue": 0,
+        "deadlines_flagged": 0,
+        "deadlines_overdue": 0,
+        "decisions_open": 0,
+        "metrics_missing": 0,
+        "metrics_off_target": 0,
+        "status": "due"
+      },
+      {
+        "id": 8,
+        "name": "Technology & vendors",
+        "slug": "technology-vendors",
+        "owner": null,
+        "routines_due": 0,
+        "routines_overdue": 0,
+        "tasks_open": 1,
+        "tasks_overdue": 0,
+        "deadlines_flagged": 0,
+        "deadlines_overdue": 0,
+        "decisions_open": 0,
+        "metrics_missing": 0,
+        "metrics_off_target": 0,
+        "status": "ok"
+      },
+      {
+        "id": 9,
+        "name": "Finance & reporting",
+        "slug": "finance-reporting",
+        "owner": null,
+        "routines_due": 0,
+        "routines_overdue": 0,
+        "tasks_open": 2,
+        "tasks_overdue": 0,
+        "deadlines_flagged": 0,
+        "deadlines_overdue": 0,
+        "decisions_open": 0,
+        "metrics_missing": 1,
+        "metrics_off_target": 0,
+        "status": "ok"
+      },
+      {
+        "id": 10,
+        "name": "Marketing & outreach",
+        "slug": "marketing-outreach",
+        "owner": null,
+        "routines_due": 0,
+        "routines_overdue": 0,
+        "tasks_open": 0,
+        "tasks_overdue": 0,
+        "deadlines_flagged": 0,
+        "deadlines_overdue": 0,
+        "decisions_open": 0,
+        "metrics_missing": 0,
+        "metrics_off_target": 0,
+        "status": "ok"
+      }
+    ],
+    "routines": [
+      {
+        "id": 19,
+        "title": "Walk the space: safety, repairs, cleanliness, sound privacy",
+        "function": "Facilities & supplies",
+        "cadence": "Monthly",
+        "owner": null,
+        "due": "2026-11-15",
+        "days_late": 0
+      }
+    ],
+    "tasks": [
+      {
+        "id": 7,
+        "title": "Set targets for new-client flow: inquiries, intakes booked and days to first appointment",
+        "function": "Intake & referrals",
+        "status": "To do",
+        "priority": "High",
+        "owner": null,
+        "due": "2026-11-20",
+        "overdue": false,
+        "blocked": false
+      },
+      {
+        "id": 1,
+        "title": "Add staff as users and give every function an owner",
+        "function": "People & payroll",
+        "status": "To do",
+        "priority": "High",
+        "owner": null,
+        "due": "2026-11-22",
+        "overdue": false,
+        "blocked": false
+      },
+      {
+        "id": 2,
+        "title": "Review the starter routines: remove what does not apply, add what is missing",
+        "function": "Front desk & scheduling",
+        "status": "To do",
+        "priority": "High",
+        "owner": null,
+        "due": "2026-11-22",
+        "overdue": false,
+        "blocked": false
+      },
+      {
+        "id": 3,
+        "title": "Enter every license, CAQH, malpractice and payer recredentialing date into Deadlines",
+        "function": "Credentialing & licensing",
+        "status": "To do",
+        "priority": "High",
+        "owner": null,
+        "due": "2026-11-22",
+        "overdue": false,
+        "blocked": false
+      },
+      {
+        "id": 4,
+        "title": "Enter lease, insurance policy, software and vendor renewal dates into Deadlines",
+        "function": "Technology & vendors",
+        "status": "To do",
+        "priority": "High",
+        "owner": null,
+        "due": "2026-11-22",
+        "overdue": false,
+        "blocked": false
+      },
+      {
+        "id": 5,
+        "title": "Set a target for each metric",
+        "function": "Finance & reporting",
+        "status": "To do",
+        "priority": "High",
+        "owner": null,
+        "due": "2026-11-22",
+        "overdue": false,
+        "blocked": false
+      },
+      {
+        "id": 6,
+        "title": "Enter the last four weeks of numbers into Metrics",
+        "function": "Finance & reporting",
+        "status": "To do",
+        "priority": "High",
+        "owner": null,
+        "due": "2026-11-22",
+        "overdue": false,
+        "blocked": false
+      }
+    ],
+    "deadlines": [],
+    "decisions": [],
+    "metrics": [
+      {
+        "id": 1,
+        "name": "Appointments held",
+        "function": "Front desk & scheduling",
+        "unit": "count",
+        "period": "Weekly",
+        "direction": "higher",
+        "target": null,
+        "latest_value": null,
+        "latest_period": null,
+        "previous_value": null,
+        "expected_period": "2026-11-02",
+        "missing": true,
+        "on_target": null
+      },
+      {
+        "id": 2,
+        "name": "No-show and late-cancel rate",
+        "function": "Front desk & scheduling",
+        "unit": "%",
+        "period": "Weekly",
+        "direction": "lower",
+        "target": null,
+        "latest_value": null,
+        "latest_period": null,
+        "previous_value": null,
+        "expected_period": "2026-11-02",
+        "missing": true,
+        "on_target": null
+      },
+      {
+        "id": 5,
+        "name": "Days from inquiry to first appointment",
+        "function": "Intake & referrals",
+        "unit": "days",
+        "period": "Weekly",
+        "direction": "lower",
+        "target": null,
+        "latest_value": null,
+        "latest_period": null,
+        "previous_value": null,
+        "expected_period": "2026-11-02",
+        "missing": true,
+        "on_target": null
+      },
+      {
+        "id": 4,
+        "name": "Intakes booked",
+        "function": "Intake & referrals",
+        "unit": "count",
+        "period": "Weekly",
+        "direction": "higher",
+        "target": null,
+        "latest_value": null,
+        "latest_period": null,
+        "previous_value": null,
+        "expected_period": "2026-11-02",
+        "missing": true,
+        "on_target": null
+      },
+      {
+        "id": 3,
+        "name": "New client inquiries",
+        "function": "Intake & referrals",
+        "unit": "count",
+        "period": "Weekly",
+        "direction": "higher",
+        "target": null,
+        "latest_value": null,
+        "latest_period": null,
+        "previous_value": null,
+        "expected_period": "2026-11-02",
+        "missing": true,
+        "on_target": null
+      },
+      {
+        "id": 7,
+        "name": "Claim denial rate",
+        "function": "Billing & insurance",
+        "unit": "%",
+        "period": "Monthly",
+        "direction": "lower",
+        "target": null,
+        "latest_value": null,
+        "latest_period": null,
+        "previous_value": null,
+        "expected_period": "2026-10-01",
+        "missing": true,
+        "on_target": null
+      },
+      {
+        "id": 6,
+        "name": "Claims submitted",
+        "function": "Billing & insurance",
+        "unit": "count",
+        "period": "Weekly",
+        "direction": "higher",
+        "target": null,
+        "latest_value": null,
+        "latest_period": null,
+        "previous_value": null,
+        "expected_period": "2026-11-02",
+        "missing": true,
+        "on_target": null
+      },
+      {
+        "id": 9,
+        "name": "Client balances over 60 days",
+        "function": "Billing & insurance",
+        "unit": "$",
+        "period": "Monthly",
+        "direction": "lower",
+        "target": null,
+        "latest_value": null,
+        "latest_period": null,
+        "previous_value": null,
+        "expected_period": "2026-10-01",
+        "missing": true,
+        "on_target": null
+      },
+      {
+        "id": 8,
+        "name": "Days in accounts receivable",
+        "function": "Billing & insurance",
+        "unit": "days",
+        "period": "Monthly",
+        "direction": "lower",
+        "target": null,
+        "latest_value": null,
+        "latest_period": null,
+        "previous_value": null,
+        "expected_period": "2026-10-01",
+        "missing": true,
+        "on_target": null
+      },
+      {
+        "id": 10,
+        "name": "Clinician caseload utilization",
+        "function": "People & payroll",
+        "unit": "%",
+        "period": "Weekly",
+        "direction": "higher",
+        "target": null,
+        "latest_value": null,
+        "latest_period": null,
+        "previous_value": null,
+        "expected_period": "2026-11-02",
+        "missing": true,
+        "on_target": null
+      },
+      {
+        "id": 11,
+        "name": "Collections",
+        "function": "Finance & reporting",
+        "unit": "$",
+        "period": "Weekly",
+        "direction": "higher",
+        "target": null,
+        "latest_value": null,
+        "latest_period": null,
+        "previous_value": null,
+        "expected_period": "2026-11-02",
+        "missing": true,
+        "on_target": null
+      }
+    ],
+    "gaps": {
+      "functions_without_owner": [
+        "Front desk & scheduling",
+        "Intake & referrals",
+        "Billing & insurance",
+        "Credentialing & licensing",
+        "Compliance & privacy",
+        "People & payroll",
+        "Facilities & supplies",
+        "Technology & vendors",
+        "Finance & reporting",
+        "Marketing & outreach"
+      ],
+      "metrics_without_target": [
+        "Appointments held",
+        "No-show and late-cancel rate",
+        "Days from inquiry to first appointment",
+        "Intakes booked",
+        "New client inquiries",
+        "Claim denial rate",
+        "Claims submitted",
+        "Client balances over 60 days",
+        "Days in accounts receivable",
+        "Clinician caseload utilization",
+        "Collections"
+      ],
+      "metrics_never_reported": [
+        "Appointments held",
+        "No-show and late-cancel rate",
+        "Days from inquiry to first appointment",
+        "Intakes booked",
+        "New client inquiries",
+        "Claim denial rate",
+        "Claims submitted",
+        "Client balances over 60 days",
+        "Days in accounts receivable",
+        "Clinician caseload utilization",
+        "Collections"
+      ],
+      "no_deadlines_entered": true
+    }
+  },
+  "result": {
+    "status": "complete",
+    "coverage": "complete",
+    "files": [
+      "snapshot.json",
+      "summary.md"
+    ],
+    "raised": [],
+    "unfinished": []
+  }
+}

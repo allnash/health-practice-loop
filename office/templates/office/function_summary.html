@@ -1,0 +1,25 @@
+{% load unfold %}
+{% if office_function %}
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+        {% component "unfold/components/card.html" %}
+            {% component "unfold/components/text.html" %}Routines due{% endcomponent %}
+            {% component "unfold/components/title.html" %}{{ office_function.routines_due }}{% endcomponent %}
+            {% component "unfold/components/text.html" with class=office_function.routines_overdue|yesno:"text-red-600,text-subtle" %}{{ office_function.routines_overdue }} overdue{% endcomponent %}
+        {% endcomponent %}
+        {% component "unfold/components/card.html" %}
+            {% component "unfold/components/text.html" %}Open tasks{% endcomponent %}
+            {% component "unfold/components/title.html" %}{{ office_function.tasks_open }}{% endcomponent %}
+            {% component "unfold/components/text.html" with class=office_function.tasks_overdue|yesno:"text-red-600,text-subtle" %}{{ office_function.tasks_overdue }} overdue{% endcomponent %}
+        {% endcomponent %}
+        {% component "unfold/components/card.html" %}
+            {% component "unfold/components/text.html" %}Deadlines coming up{% endcomponent %}
+            {% component "unfold/components/title.html" %}{{ office_function.deadlines_flagged }}{% endcomponent %}
+            {% component "unfold/components/text.html" with class=office_function.deadlines_overdue|yesno:"text-red-600,text-subtle" %}{{ office_function.deadlines_overdue }} past due{% endcomponent %}
+        {% endcomponent %}
+        {% component "unfold/components/card.html" %}
+            {% component "unfold/components/text.html" %}Metrics missing this period{% endcomponent %}
+            {% component "unfold/components/title.html" %}{{ office_function.metrics_missing }}{% endcomponent %}
+            {% component "unfold/components/text.html" with class=office_function.metrics_off_target|yesno:"text-red-600,text-subtle" %}{{ office_function.metrics_off_target }} off target{% endcomponent %}
+        {% endcomponent %}
+    </div>
+{% endif %}

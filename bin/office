@@ -1,0 +1,8 @@
+#!/bin/sh
+# The board commands an unattended loop run is allowed to use, and nothing else.
+case "$1" in
+    office_loop | office_raise) ;;
+    *) echo "bin/office runs office_loop and office_raise only" >&2; exit 2 ;;
+esac
+cd "$(dirname "$0")/.." || exit 1
+PYENV_VERSION=3.12.13 exec pipenv run python manage.py "$@"

@@ -1,0 +1,8 @@
+{
+  "project_id": 2947,
+  "consent": "declined",
+  "choice_date": "2026-11-15",
+  "authorization_source": "Founder's reply in Claude Code on 2026-11-15, accepting the recommendation to leave session logging off",
+  "note": "The pasted Egbe connection prompt contained a standard enable-logging line. The founder asked for that prompt to be reviewed, then chose to keep logging off. Reopen only on an explicit request.",
+  "collectors": {}
+}

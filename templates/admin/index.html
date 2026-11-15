@@ -1,0 +1,81 @@
+{% extends 'admin/base.html' %}
+
+{% load i18n unfold %}
+
+{% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block branding %}
+    {% include "unfold/helpers/site_branding.html" %}
+{% endblock %}
+
+{% block content %}
+    {% component "unfold/components/container.html" %}
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+            {% for card in office_cards %}
+                {% component "unfold/components/card.html" with href=card.href %}
+                    {% component "unfold/components/text.html" %}{{ card.title }}{% endcomponent %}
+                    {% component "unfold/components/title.html" %}{{ card.value }}{% endcomponent %}
+                    {% component "unfold/components/text.html" with class=card.alert|yesno:"text-red-600,text-subtle" %}{{ card.note }}{% endcomponent %}
+                {% endcomponent %}
+            {% endfor %}
+        </div>
+
+        <div class="mb-6">
+            {% component "unfold/components/card.html" with title="The next two weeks" description="Work falling due each day. Anything already late is counted today." %}
+                {% component "unfold/components/chart/bar.html" with data=office_workload height=220 %}{% endcomponent %}
+            {% endcomponent %}
+        </div>
+
+        <div class="mb-6">
+            {% component "unfold/components/card.html" with title="Functions" description="Every area of the office, who owns it and what is waiting" %}
+                {% component "unfold/components/table.html" with table=office_functions card_included=1 striped=1 %}{% endcomponent %}
+            {% endcomponent %}
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
+            {% component "unfold/components/card.html" with title="Routines due" description="Recurring duties due today or earlier" %}
+                {% component "unfold/components/table.html" with table=office_routines card_included=1 striped=1 %}{% endcomponent %}
+                {% if office_more_routines %}
+                    <p class="text-subtle text-xs mt-2">
+                        <a class="text-primary-600 underline" href="{% url 'admin:office_routine_changelist' %}">{{ office_more_routines }} more due</a>
+                    </p>
+                {% endif %}
+            {% endcomponent %}
+
+            {% component "unfold/components/card.html" with title="Tasks needing attention" description="Late, blocked or due within 7 days" %}
+                {% component "unfold/components/table.html" with table=office_tasks card_included=1 striped=1 %}{% endcomponent %}
+            {% endcomponent %}
+
+            {% component "unfold/components/card.html" with title="Deadlines" description="Licenses, credentialing, policies and contracts inside their warning window" %}
+                {% component "unfold/components/table.html" with table=office_deadlines card_included=1 striped=1 %}{% endcomponent %}
+            {% endcomponent %}
+
+            {% component "unfold/components/card.html" with title="Decisions waiting on you" description="Choices the loop will not make for you" %}
+                {% component "unfold/components/table.html" with table=office_decisions card_included=1 striped=1 %}{% endcomponent %}
+            {% endcomponent %}
+        </div>
+
+        <div class="mb-6">
+            {% component "unfold/components/card.html" with title="Metrics" description="Counts and rates only, one number per period" %}
+                {% component "unfold/components/table.html" with table=office_metrics card_included=1 striped=1 %}{% endcomponent %}
+            {% endcomponent %}
+        </div>
+
+        {% component "unfold/components/card.html" with title="Office Manager loop" description="The latest review" %}
+            {% if office_last_run %}
+                {% component "unfold/components/text.html" with class="text-subtle" %}
+                    {{ office_last_run.get_kind_display }} · {{ office_last_run.started_at|date:"M j, Y, g:i a" }}{% if office_last_run.next_checkpoint %} · next checkpoint {{ office_last_run.next_checkpoint|date:"M j" }}{% endif %}
+                {% endcomponent %}
+                {% if office_last_run.focus %}
+                    <p class="font-semibold text-important text-sm mt-2">{{ office_last_run.focus }}</p>
+                {% endif %}
+                <div class="text-sm mt-2">{{ office_last_run_summary }}</div>
+                <p class="text-xs mt-2">
+                    <a class="text-primary-600 underline" href="{% url 'admin:office_looprun_changelist' %}">All loop runs</a>
+                </p>
+            {% else %}
+                {% component "unfold/components/text.html" %}The loop has not run yet.{% endcomponent %}
+            {% endif %}
+        {% endcomponent %}
+    {% endcomponent %}
+{% endblock %}

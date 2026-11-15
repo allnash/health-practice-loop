@@ -1,0 +1,34 @@
+#!/bin/sh
+# One unattended pass of the Office Manager loop. launchd starts this on weekday
+# mornings (see egbe-docs/routines.json). Run it by hand to trigger a pass now.
+#
+# Claude Code runs headless with only the permissions listed below: it can read
+# the project, edit files inside it, and run bin/office and date. Anything else
+# it tries is refused, because nobody is there to approve it.
+cd "$(dirname "$0")/.." || exit 1
+export PATH="$HOME/.pyenv/shims:$HOME/.local/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin"
+mkdir -p egbe-docs/.local
+exec >>egbe-docs/.local/office-loop.log 2>&1
+
+echo "=== $(date '+%Y-%m-%d %H:%M:%S %z') run started"
+claude -p "Run one pass of the Office Manager loop for this project. Follow the section 'How a scheduled run goes' in egbe-docs/product/office-manager-loop.md exactly, including the limits in that file. Nobody is present to answer questions or approve anything." \
+    --permission-mode acceptEdits \
+    --allowedTools "Bash(./bin/office *)" "Bash(date *)" &
+run=$!
+# A run should take a few minutes. Stop one that hangs so the next can start.
+( sleep 1500; kill "$run" 2>/dev/null ) &
+watchdog=$!
+wait "$run"
+status=$?
+pkill -P "$watchdog" 2>/dev/null
+kill "$watchdog" 2>/dev/null
+wait "$watchdog" 2>/dev/null
+echo "=== $(date '+%Y-%m-%d %H:%M:%S %z') run finished, status $status"
+
+if [ "$status" -eq 0 ]; then
+    message="Run finished. The latest review is on the office dashboard."
+else
+    message="Run failed. See egbe-docs/.local/office-loop.log."
+fi
+osascript -e "display notification \"$message\" with title \"Office Manager loop\"" 2>/dev/null
+exit "$status"

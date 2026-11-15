@@ -1,0 +1,27 @@
+# Python / Django
+__pycache__/
+*.py[cod]
+db.sqlite3
+/staticfiles/
+/media/
+.venv/
+
+# Private settings
+.env
+.env.local
+
+# Egbe's own guidance and playbooks are not ours to redistribute. The Egbe plugin
+# copies them into the project during setup.
+/EGBE.md
+/egbe-docs/playbooks/
+
+# Egbe private working files
+!/egbe-docs/marketing/campaigns/instantly/outreach.db
+/egbe-docs/**/.local/
+/egbe-docs/**/.env
+/egbe-docs/**/.env.*
+/egbe-docs/**/*.lock
+/egbe-docs/**/*.tmp
+/egbe-docs/**/*-wal
+/egbe-docs/**/*-shm
+/egbe-docs/**/*-journal

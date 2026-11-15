@@ -1,0 +1,42 @@
+{
+  "product_reporting": {
+    "2947": {
+      "enabled": true,
+      "workflow": "business_loop",
+      "plan": "egbe-docs/product/office-manager-loop.md",
+      "method": "egbe-docs/playbooks/product/business-loop.md",
+      "timezone": "America/New_York",
+      "schedule": {
+        "recurrence": "Weekdays at 8:45 am local time",
+        "loop_checkpoints": "Mondays: full review",
+        "brief_updates": "Tuesday to Friday: brief check",
+        "digest": "material_updates_only",
+        "quiet_hours": null,
+        "agreement": "Founder asked for the loop on 2026-11-15 and on the same day approved keeping it running when Claude Code is closed. The cadence was proposed by the agent and accepted with that approval."
+      },
+      "scheduler": {
+        "harness": "claude-code",
+        "mechanism": "macOS launchd user agent that runs bin/office-loop-run (Claude Code headless)",
+        "job_id": "local.practice-office.loop",
+        "job_file": "~/Library/LaunchAgents/local.practice-office.loop.plist",
+        "workspace": ".",
+        "destination": "The Office Manager loop card on the dashboard, plus a macOS notification",
+        "log": "egbe-docs/.local/office-loop.log",
+        "state": "registered",
+        "verified": "Registration confirmed with launchctl on 2026-11-15. One unattended run was started through launchd the same day and finished with status 0 in about two minutes, recording loop run #2. The first run on the weekday timer itself is due 2026-11-16 at 8:45 am.",
+        "runner_requirements": "This Mac must be on and logged in. A run missed while asleep starts on wake.",
+        "stop": "launchctl bootout gui/$(id -u)/local.practice-office.loop, then set enabled to false here"
+      },
+      "last_completed": {
+        "responsibility": "business_loop",
+        "occurrence": "2026-11-15 (unattended brief check)",
+        "result": "egbe-docs/reports/2026-11-15T210553Z-brief/summary.md"
+      },
+      "last_delivered": {
+        "occurrence": "2026-11-15 (unattended brief check)",
+        "artifact": "egbe-docs/reports/2026-11-15T210553Z-brief/summary.md",
+        "notification": "recorded as loop run #2 on the dashboard's Office Manager loop card"
+      }
+    }
+  }
+}
